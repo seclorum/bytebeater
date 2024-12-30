@@ -1,4 +1,4 @@
-all:	supersaw thxsnd
+all:	supersaw thxsnd wavegen
 
 supersaw:	supersaw.c
 	gcc supersaw.c -o bin/supersaw
