@@ -19,7 +19,7 @@ wavegen_test:	wavegen
 	./bin/wavegen | sox -t raw -r 8000 -e unsigned-integer -b 8 -c 1 - -d
 
 thxsnd:	thxsnd.c
-	gcc thxsnd.c -o bin/thxsnd
+	gcc thxsnd.c -o bin/thxsnd -Wno-unsequenced
 
 thxsnd_test:	thxsnd
 	./bin/thxsnd | sox -t raw -r 8000 -e unsigned-integer -b 8 -c 1 - -d
