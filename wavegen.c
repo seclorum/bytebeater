@@ -145,14 +145,11 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < SAMPLE_RATE * DURATION; i++) {
         double t = (double)i / SAMPLE_RATE;  // Time in seconds
 
-        //int16_t sample = wavegen(t, gen_select);
         int16_t sample = wavegen_select(t, gen_select);
 
         // Write the sample as little-endian 16-bit PCM to stdout
         fwrite(&sample, sizeof(int16_t), 1, stdout);
 	
-    	// Waveform selection based on time (0 = sine, 1 = square, 2 = triangle)
-    	//gen_select = (int)(t * 0.8) % 3;
     }
 
     return 0;

@@ -17,7 +17,7 @@ wavegen:	wavegen.c
 
 wavegen_test:	wavegen
 	timeout 1 ./bin/wavegen sine | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
-	timeout 1 ./bin/wavegen square | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
+	timeout 1 ./bin/wavegen square | sox -t raw -r 8000 -e unsigned-integer -b 8 -c 1 - -d
 	timeout 1 ./bin/wavegen fm | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
 	timeout 1 ./bin/wavegen sample | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
 	timeout 1 ./bin/wavegen triangle | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
