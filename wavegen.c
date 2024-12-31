@@ -109,9 +109,36 @@ int16_t wavegen_select(double t, int wave_select) {
     }
 }
 
-int main() {
+
+// Function to parse command-line argument and set wavegen_select
+WaveType get_opts(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <wave_type>\n", argv[0]);
+        fprintf(stderr, "Wave types: sine, square, fm, sample, triangle\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (strcmp(argv[1], "sine") == 0) {
+        return SINE;
+    } else if (strcmp(argv[1], "square") == 0) {
+        return SQUARE;
+    } else if (strcmp(argv[1], "fm") == 0) {
+        return FM;
+    } else if (strcmp(argv[1], "sample") == 0) {
+        return SAMPLE;
+    } else if (strcmp(argv[1], "triangle") == 0) {
+        return TRIANGLE;
+    } else {
+        fprintf(stderr, "Invalid wave type: %s\n", argv[1]);
+        fprintf(stderr, "Valid wave types: sine, square, fm, sample, triangle\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+
+int main(int argc, char *argv[]) {
     // Pipe audio data to stdout (sox will read this)
-	int gen_select = FM;
+    WaveType gen_select = get_opts(argc, argv);
 
 	initialize_wavetable(wavetable);
 

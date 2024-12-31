@@ -16,7 +16,11 @@ wavegen:	wavegen.c
 	gcc wavegen.c -o bin/wavegen -lm
 
 wavegen_test:	wavegen
-	./bin/wavegen | sox -t raw -r 8000 -e unsigned-integer -b 8 -c 1 - -d
+	timeout 1 ./bin/wavegen sine | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
+	timeout 1 ./bin/wavegen square | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
+	timeout 1 ./bin/wavegen fm | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
+	timeout 1 ./bin/wavegen sample | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
+	timeout 1 ./bin/wavegen triangle | sox -t raw -r 8000 -e unsigned-integer -b 16 -c 1 - -d
 
 thxsnd:	thxsnd.c
 	gcc thxsnd.c -o bin/thxsnd -Wno-unsequenced
